@@ -127,10 +127,10 @@ const quickSearchLinks = ["about", "projects", "experience", "skills", "educatio
 const tagButtons = [
   "5+ Years Experience",
   "Full Stack Developer",
-  "AI Enthusiast",
   "React Expert",
   "Problem Solver",
-  "Colorado State Graduate",
+  "Strong UI/UX Orientation",
+  "REST & GraphQL API's",
 ]
 
 export default function PortfolioSearch() {
@@ -255,7 +255,7 @@ export default function PortfolioSearch() {
             {/* Search Bar */}
             <div className="w-full max-w-2xl mb-8 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
               <div
-                className={`relative group ${theme === "dark" ? "shadow-2xl shadow-blue-500/10" : "shadow-xl shadow-slate-300/50"}`}
+                className={`relative group rounded-full ${theme === "dark" ? "shadow-2xl shadow-blue-500/10" : "shadow-xl shadow-slate-300/50"}`}
               >
                 <div
                   className={`absolute inset-0 rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300 ${theme === "dark" ? "bg-gradient-to-r from-blue-500 to-purple-500" : "bg-gradient-to-r from-blue-300 to-purple-300"}`}
