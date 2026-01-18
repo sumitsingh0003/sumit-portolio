@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Search, Moon, Sun, MapPin, Calendar, GraduationCap, Briefcase, User, LucideUser, LucideCodeXml, LucidePhone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -584,7 +584,7 @@ export default function PortfolioSearch() {
           className={`sticky top-0 z-40 backdrop-blur-lg transition-all duration-300 ${theme === "dark" ? "bg-[#0f1729]/80" : "bg-white/80"} border-b ${theme === "dark" ? "border-slate-800" : "border-slate-200"}`}
         >
           <div className="max-w-6xl mx-auto px-4 py-4">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 max-sm:flex-col max-sm:items-start">
               {/* Logo */}
               <h1
                 className={`text-3xl font-bold tracking-tight cursor-pointer transition-transform hover:scale-105 ${theme === "dark" ? "text-white" : "text-slate-900"}`}
@@ -640,7 +640,7 @@ export default function PortfolioSearch() {
                   setSearchTime(null)
                   setSuggestions([])
                 }}
-                className={`transition-all duration-300 hover:scale-105 ${theme === "dark" ? "text-slate-300 hover:text-white hover:bg-slate-800" : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"}`}
+                className={`transition-all duration-300 hover:scale-105 ${theme === "dark" ? "text-slate-300 hover:text-white hover:bg-slate-800" : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"} max-sm:w-full`}
               >
                 Back to Home
               </Button>
@@ -659,13 +659,13 @@ export default function PortfolioSearch() {
         </div>
 
         {/* Results */}
-        <div className="max-w-4xl mx-auto px-4 py-8">
+        <div className="max-w-4xl mx-auto px-4 py-8 max-sm:px-3 max-sm:py-5">
           {searchTime !== null && (
             <p className={`text-sm mb-8 animate-fade-in ${theme === "dark" ? "text-slate-400" : "text-slate-600"}`}>
               About {searchResults.length} results ({searchTime} seconds)
             </p>
           )}
-          <div className="flex flex-col items-center justify-center py-24 text-center animate-fade-in">
+          <div className="flex flex-col items-center justify-center py-24 max-sm:py-16 text-center animate-fade-in">
             {/* Icon */}
             <div className="mb-6">
               <Search className="w-16 h-16 text-slate-400" />
@@ -722,6 +722,11 @@ export default function PortfolioSearch() {
     )
   }
 
+useEffect(() => {
+  if (searchResults.length) {
+    setSearchTime(Number((Math.random() * 0.5 + 0.1).toFixed(2)))
+  }
+}, [searchResults])
 
   return (
     <div className={`min-h-screen transition-all duration-500 ${theme === "dark" ? "dark bg-[#0f1729]" : "bg-white"}`}>
@@ -763,7 +768,7 @@ export default function PortfolioSearch() {
             {/* Logo */}
             <div className="mb-8 animate-fade-in-up">
               <h1
-                className={`text-7xl md:text-8xl font-bold tracking-tight ${theme === "dark" ? "text-white" : "text-slate-900"}`}
+                className={`text-7xl md:text-8xl max-sm:text-5xl max-sm:leading-tight font-bold tracking-tight ${theme === "dark" ? "text-white" : "text-slate-900"}`}
               >
                 <span className="inline-block animate-bounce-subtle text-[#4285f4] transition-transform duration-300 ease-out hover:scale-125 cursor-pointer" style={{ animationDelay: "0s" }}>
                   S
@@ -820,7 +825,7 @@ export default function PortfolioSearch() {
                   className={`absolute inset-0 rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300 ${theme === "dark" ? "bg-gradient-to-r from-blue-500 to-purple-500" : "bg-gradient-to-r from-blue-300 to-purple-300"}`}
                 />
                 <div
-                  className={`relative flex items-center gap-3 px-6 py-4 rounded-full transition-all duration-300 ${theme === "dark" ? "bg-slate-800/90 hover:bg-slate-800" : "bg-white hover:bg-slate-50"} border ${theme === "dark" ? "border-slate-700" : "border-slate-200"}`}
+                  className={`relative flex items-center gap-3 px-6 py-4 max-sm:px-4 max-sm:py-3 rounded-full transition-all duration-300 ${theme === "dark" ? "bg-slate-800/90 hover:bg-slate-800" : "bg-white hover:bg-slate-50"} border ${theme === "dark" ? "border-slate-700" : "border-slate-200"}`}
                 >
                   <Search className={`w-5 h-5 ${theme === "dark" ? "text-slate-400" : "text-slate-500"}`} onClick={() => runSearch(inputValue)} />
                   <Input
@@ -872,7 +877,7 @@ export default function PortfolioSearch() {
                 <Badge
                   key={tag}
                   variant="secondary"
-                  className={`px-4 py-2 text-sm cursor-pointer transition-all duration-300 hover:scale-110 hover:-translate-y-1 animate-fade-in ${theme === "dark" ? "bg-slate-800/50 hover:bg-slate-700 text-slate-300 border-slate-700" : "bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200"} border`}
+                  className={`px-4 py-2 text-sm max-sm:px-3 max-sm:py-1.5 max-sm:text-xs cursor-pointer transition-all duration-300 hover:scale-110 hover:-translate-y-1 animate-fade-in ${theme === "dark" ? "bg-slate-800/50 hover:bg-slate-700 text-slate-300 border-slate-700" : "bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200"} border`}
                   style={{ animationDelay: `${0.7 + index * 0.1}s` }}
                 >
                   {tag}
@@ -886,7 +891,7 @@ export default function PortfolioSearch() {
               style={{ animationDelay: "1.3s", zIndex: -1 }}
             >
               <p className="mb-4 text-sm">Quick searches:</p>
-              <div className="flex flex-wrap justify-center gap-4">
+              <div className="flex flex-wrap justify-center gap-4 max-sm:grid max-sm:grid-cols-2 max-sm:gap-3">
                 {quickSearchLinks.map((link, index) => (
                   <button
                     key={link}
@@ -910,7 +915,7 @@ export default function PortfolioSearch() {
               className={`sticky top-0 z-40 backdrop-blur-lg transition-all duration-300 ${theme === "dark" ? "bg-[#0f1729]/80" : "bg-white/80"} border-b ${theme === "dark" ? "border-slate-800" : "border-slate-200"}`}
             >
               <div className="max-w-6xl mx-auto px-4 py-4">
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-4 max-sm:flex-col max-sm:items-start">
                   {/* Logo */}
                   <h1
                     className={`text-3xl font-bold tracking-tight cursor-pointer transition-transform hover:scale-105 ${theme === "dark" ? "text-white" : "text-slate-900"}`}
@@ -966,7 +971,7 @@ export default function PortfolioSearch() {
                       setSearchTime(null)
                       setSuggestions([])
                     }}
-                    className={`transition-all duration-300 hover:scale-105 ${theme === "dark" ? "text-slate-300 hover:text-white hover:bg-slate-800" : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"}`}
+                    className={`transition-all duration-300 hover:scale-105 ${theme === "dark" ? "text-slate-300 hover:text-white hover:bg-slate-800" : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"} max-sm:w-full`}
                   >
                     Back to Home
                   </Button>
@@ -985,7 +990,7 @@ export default function PortfolioSearch() {
             </div>
 
             {/* Results */}
-            <div className="max-w-4xl mx-auto px-4 py-8">
+            <div className="max-w-4xl mx-auto px-4 py-8 max-sm:px-3 max-sm:py-5">
               {searchTime !== null && (
                 <p className={`text-sm mb-8 animate-fade-in ${theme === "dark" ? "text-slate-400" : "text-slate-600"}`}>
                   About {searchResults.length} results ({searchTime} seconds)
@@ -996,7 +1001,7 @@ export default function PortfolioSearch() {
                 {searchResults.map((result, index) => (
                   <div
                     key={result.id}
-                    className={`group animate-slide-in-up transition-all duration-300 hover:translate-x-2 ${theme === "dark" ? "hover:bg-slate-800/30" : "hover:bg-slate-50"} p-6 rounded-lg`}
+                    className={`group animate-slide-in-up transition-all duration-300 hover:translate-x-2 max-sm:hover:translate-x-0 ${theme === "dark" ? "hover:bg-slate-800/30" : "hover:bg-slate-50"} p-6 rounded-lg`}
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     {/* Type Badge */}
@@ -1121,7 +1126,7 @@ export default function PortfolioSearch() {
                               href={social.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className={`px-4 py-1 rounded-full text-sm transition-all duration-300 hover:scale-105 ${
+                              className={`px-4 py-1 max-sm:px-3 max-sm:text-xs rounded-full text-sm transition-all duration-300 hover:scale-105 ${
                                 theme === "dark"
                                   ? "bg-slate-800 text-blue-400 hover:bg-slate-700"
                                   : "bg-slate-100 text-blue-600 hover:bg-slate-200"
