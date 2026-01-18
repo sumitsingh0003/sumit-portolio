@@ -21,6 +21,12 @@ type SearchResult = {
   }
   achievements?: string[]
   tags?: string[]
+  socialLinks?: {
+    name: string
+    url: string
+    tag: string
+  }[]
+
 }
 
 
@@ -113,7 +119,7 @@ const mockData: SearchResult[] = [
       "#RealTimeApplications"
     ]
   },
- {
+  {
     id: "5",
     type: "experience",
     title: "Senior Web Developer at AbacusDesk IT Solution Pvt. Ltd.",
@@ -148,7 +154,7 @@ const mockData: SearchResult[] = [
     type: "contact",
     title: "Contact Information",
     urlText: "✉️ sumit18440@gmail.com",
-    urlLink:"mailto:sumit18440@gmail.com",
+    urlLink: "mailto:sumit18440@gmail.com",
     description:
       "📞 Phone: +91 989-155-4993 | Location: Faridabad, Haryana, India | I’d love to hear from you! Get in touch with me for opportunities, collaborations, or inquiries.",
     meta: {
@@ -166,28 +172,28 @@ const mockData: SearchResult[] = [
     type: "contact",
     title: "LinkedIn Profile",
     urlText: "ℹ️ linkedin.com/in/sumitsingh0003",
-    urlLink:"https://www.linkedin.com/in/sumitsingh0003",
+    urlLink: "https://www.linkedin.com/in/sumitsingh0003",
     description: "Connect with me on LinkedIn to view professional background, project and achievements.",
     meta: {
       location: "Faridabad, Haryana, India"
     },
-    tags: [ "#LinkedIn", "Profile", "#Networking" ]
+    tags: ["#LinkedIn", "Profile", "#Networking"]
   },
   {
-  id: "8",
-  type: "skills",
-  title: "Programming Languages",
-  description:
-    "Proficient in JavaScript, Python, HTML, CSS, SCSS, and PHP with strong exp in building responsive, scalable, and performance-optimized web applications.",
-  tags: [
-    "JavaScript",
-    "Python",
-    "HTML",
-    "CSS",
-    "SCSS",
-    "PHP",
-    "Programming"
-  ]
+    id: "8",
+    type: "skills",
+    title: "Programming Languages",
+    description:
+      "Proficient in JavaScript, Python, HTML, CSS, SCSS, and PHP with strong exp in building responsive, scalable, and performance-optimized web applications.",
+    tags: [
+      "JavaScript",
+      "Python",
+      "HTML",
+      "CSS",
+      "SCSS",
+      "PHP",
+      "Programming"
+    ]
   },
   {
     id: "9",
@@ -284,96 +290,166 @@ const mockData: SearchResult[] = [
     ]
   },
   {
-  id: "14",
-  type: "projects",
-  title: "Invoice Maker",
-  urlText: "🔗 invoice-maker.app",
-  urlLink: "https://make-invoice.netlify.app",
-  description:
-    "A full-stack invoice management web application that allows users to create, manage, and export professional invoices. The app supports secure authentication, dynamic invoice creation, automatic calculations, multiple templates, and PDF export functionality.",
-  meta: {
-    date: "Jun 2024",
-    location: "Remote"
-  },
-  achievements: [
-    "Implemented secure user authentication with JWT verification and single-device session control",
-    "Built a dynamic invoice builder supporting items, quantities, rates, taxes, discounts, and service charges",
-    "Enabled automatic calculations for subtotal, GST, tax, discounts, and balance due",
-    "Developed CRUD functionality for invoices including create, edit, update, delete, and preview",
-    "Integrated PDF export to convert full HTML invoices into downloadable PDF files",
-    "Added multiple invoice templates and client management features",
-    "Designed and developed the project as a solo application covering frontend, backend, UI/UX, PDF engine, and database"
-  ],
-  tags: [
-    "#InvoiceMaker",
-    "#FullStackProject",
-    "#JWTAuthentication",
-    "#PDFGeneration",
-    "#WebApplication",
-    "#SoloProject"
-  ]
+    id: "14",
+    type: "projects",
+    title: "Invoice Maker",
+    urlText: "🔗 invoice-maker.app",
+    urlLink: "https://make-invoice.netlify.app",
+    description:
+      "A full-stack invoice management web application that allows users to create, manage, and export professional invoices. The app supports secure authentication, dynamic invoice creation, automatic calculations, multiple templates, and PDF export functionality.",
+    meta: {
+      date: "Jun 2024",
+      location: "Remote"
+    },
+    achievements: [
+      "Implemented secure user authentication with JWT verification and single-device session control",
+      "Built a dynamic invoice builder supporting items, quantities, rates, taxes, discounts, and service charges",
+      "Enabled automatic calculations for subtotal, GST, tax, discounts, and balance due",
+      "Developed CRUD functionality for invoices including create, edit, update, delete, and preview",
+      "Integrated PDF export to convert full HTML invoices into downloadable PDF files",
+      "Added multiple invoice templates and client management features",
+      "Designed and developed the project as a solo application covering frontend, backend, UI/UX, PDF engine, and database"
+    ],
+    tags: [
+      "#InvoiceMaker",
+      "#FullStackProject",
+      "#JWTAuthentication",
+      "#PDFGeneration",
+      "#WebApplication",
+      "#SoloProject"
+    ]
   },
   {
-  id: "15",
-  type: "projects",
-  title: "API CRUD Generator",
-  urlText: "🔗 api-crud-generator.app",
-  urlLink: "https://apigenerator.netlify.app",
-  description:
-    "A dynamic API generation platform that allows users to instantly create and test ready-to-use CRUD APIs. The system automatically generates endpoints and database structures based on user-defined prefixes and database names.",
-  meta: {
-    date: "Jul 2024",
-    location: "Remote"
+    id: "15",
+    type: "projects",
+    title: "API CRUD Generator",
+    urlText: "🔗 api-crud-generator.app",
+    urlLink: "https://apigenerator.netlify.app",
+    description:
+      "A dynamic API generation platform that allows users to instantly create and test ready-to-use CRUD APIs. The system automatically generates endpoints and database structures based on user-defined prefixes and database names.",
+    meta: {
+      date: "Jul 2024",
+      location: "Remote"
+    },
+    achievements: [
+      "Implemented login-based access using predefined credentials for secure usage without registration",
+      "Built a dynamic API generator that creates five ready-to-use CRUD APIs using prefix and database name inputs",
+      "Enabled full CRUD operations including create, read all, read by ID, update, and delete endpoints",
+      "Designed dynamic MySQL database creation with separate storage per prefix and database name",
+      "Allowed unlimited API usage with no rate limits, optimized for student practice and learning",
+      "Developed a responsive frontend dashboard using React.js and Bootstrap for testing APIs directly from the UI",
+      "Built the project end-to-end as a solo developer handling frontend, backend, API architecture, and database design"
+    ],
+    tags: [
+      "#APIGenerator",
+      "#CRUD",
+      "#BackendDevelopment",
+      "#MySQL",
+      "#ReactJS",
+      "#SoloProject"
+    ]
   },
-  achievements: [
-    "Implemented login-based access using predefined credentials for secure usage without registration",
-    "Built a dynamic API generator that creates five ready-to-use CRUD APIs using prefix and database name inputs",
-    "Enabled full CRUD operations including create, read all, read by ID, update, and delete endpoints",
-    "Designed dynamic MySQL database creation with separate storage per prefix and database name",
-    "Allowed unlimited API usage with no rate limits, optimized for student practice and learning",
-    "Developed a responsive frontend dashboard using React.js and Bootstrap for testing APIs directly from the UI",
-    "Built the project end-to-end as a solo developer handling frontend, backend, API architecture, and database design"
-  ],
+  {
+    id: "16",
+    type: "about",
+    title: "Resume Download",
+    urlText: "📄 Download Resume",
+    urlLink: "/Sumit_Singh-Resume.pdf",
+    description:
+      "A dedicated resume download section that allows recruiters and hiring managers to quickly access and download my latest professional resume. The resume highlights my experience, skills, projects, and achievements in a clean and structured format.",
+    meta: {
+      date: "Updated 2026",
+      location: "India"
+    },
+    achievements: [
+      "Designed a clean and professional resume layout optimized for ATS and recruiter screening",
+      "Highlighted 3+ years of experience in frontend, full-stack, and real-time application development",
+      "Included detailed experience, projects, technical skills, and education sections",
+      "Ensured easy one-click access for downloading the resume directly from the portfolio",
+      "Kept the resume regularly updated to reflect latest roles, projects, and skill enhancements"
+    ],
+    tags: [
+      "#Resume",
+      "#DownloadResume",
+      "#ATSFriendly",
+      "#CareerProfile",
+      "#Portfolio"
+    ]
+  },
+  {
+  id: "17",
+  type: "contact",
+  title: "GitHub Profile",
+  urlText: "💻 github.com/sumitsingh0003",
+  urlLink: "https://github.com/sumitsingh0003",
+  description:
+    "Explore my GitHub repositories to view real-world projects, source code, experiments, and hands-on implementations across frontend, backend, and full-stack development.",
+  meta: {
+    location: "Faridabad, Haryana, India"
+  },
   tags: [
-    "#APIGenerator",
-    "#CRUD",
-    "#BackendDevelopment",
-    "#MySQL",
-    "#ReactJS",
-    "#SoloProject"
+    "#GitHub",
+    "#OpenSource",
+    "#Repositories",
+    "#Code",
+    "#DeveloperProfile"
   ]
 },
 {
-  id: "16",
-  type: "about",
-  title: "Resume Download",
-  urlText: "📄 Download Resume",
-  urlLink: "/Sumit_Singh-Resume.pdf",
+  id: "18",
+  type: "contact",
+  title: "Social Media Profiles",
   description:
-    "A dedicated resume download section that allows recruiters and hiring managers to quickly access and download my latest professional resume. The resume highlights my experience, skills, projects, and achievements in a clean and structured format.",
-  meta: {
-    date: "Updated 2026",
-    location: "India"
-  },
-  achievements: [
-    "Designed a clean and professional resume layout optimized for ATS and recruiter screening",
-    "Highlighted 3+ years of experience in frontend, full-stack, and real-time application development",
-    "Included detailed experience, projects, technical skills, and education sections",
-    "Ensured easy one-click access for downloading the resume directly from the portfolio",
-    "Kept the resume regularly updated to reflect latest roles, projects, and skill enhancements"
+    "Connect with me across social media platforms to stay updated with my professional journey, projects, learning, and creative work.",
+  // achievements: [
+  //   "Follow me on social platforms for updates, projects, and insights",
+  //   "Explore my work, design inspiration, and tech discussions",
+  //   "Stay connected beyond professional networks"
+  // ],
+  socialLinks: [
+    {
+      name: "Facebook",
+      url: "https://www.facebook.com/sumitsingh0003",
+      tag: "#Facebook"
+    },
+    {
+      name: "Instagram",
+      url: "https://www.instagram.com/sumitsingh0003",
+      tag: "#Instagram"
+    },
+    {
+      name: "Twitter (X)",
+      url: "http://twitter.com/Sumitsingh0003",
+      tag: "#Twitter"
+    },
+    {
+      name: "Pinterest",
+      url: "https://in.pinterest.com/sumitsingh0003/",
+      tag: "#Pinterest"
+    }
   ],
+  meta: {
+    location: "Faridabad, Haryana, India"
+  },
   tags: [
-    "#Resume",
-    "#DownloadResume",
-    "#ATSFriendly",
-    "#CareerProfile",
-    "#Portfolio"
+    "#SocialMedia",
+    "#OnlinePresence",
+    "#Networking",
+    "#PersonalBrand"
   ]
 }
 
 ]
 
 const quickSearchLinks = ["about", "projects", "experience", "skills", "education", "contact"]
+const validSearchTerms = [
+  "about",
+  "projects",
+  "experience",
+  "skills",
+  "education",
+  "contact",
+]
 
 const tagButtons = [
   "3+ Years Experience",
@@ -385,7 +461,7 @@ const tagButtons = [
 ]
 
 export default function PortfolioSearch() {
-  const [theme, setTheme] = useState<"light" | "dark">("dark")
+  const [theme, setTheme] = useState<"light" | "dark">("light")
   const [searchQuery, setSearchQuery] = useState("")
   const [searchResults, setSearchResults] = useState<SearchResult[]>([])
   const [isSearching, setIsSearching] = useState(false)
@@ -393,57 +469,55 @@ export default function PortfolioSearch() {
   const [suggestions, setSuggestions] = useState<SearchResult[]>([])
   const [searchTime, setSearchTime] = useState<number | null>(null)
 
-
-
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"))
   }
 
+  const runSearch = (query: string) => {
+    if (!query.trim()) return
 
+    setIsSearching(true)
+    setSearchQuery(query)
 
-const runSearch = (query: string) => {
-  if (!query.trim()) return
+    setTimeout(() => {
+      const results = mockData.filter(
+        (item) =>
+          item.title.toLowerCase().includes(query.toLowerCase()) ||
+          item.type.toLowerCase().includes(query.toLowerCase()) ||
+          item?.description.toLowerCase().includes(query.toLowerCase()),
+      )
 
-  setIsSearching(true)
-  setSearchQuery(query)
-
-  setTimeout(() => {
-    const results = mockData.filter(
-      (item) =>
-        item.title.toLowerCase().includes(query.toLowerCase()) ||
-        item?.description.toLowerCase().includes(query.toLowerCase()) ||
-        item.type.toLowerCase().includes(query.toLowerCase()),
-    )
-
-    setSearchResults(results)
-    setSearchTime(Number((Math.random() * 0.5 + 0.1).toFixed(2))) // 👈 HERE
-    setIsSearching(false)
-  }, 300)
-}
-
-
-const handleInputChange = (value: string) => {
-  setInputValue(value)
-
-  if (!value.trim()) {
-    setSuggestions([])
-    return
+      setSearchResults(results)
+      setSearchTime(Number((Math.random() * 0.5 + 0.1).toFixed(2))) // 👈 HERE
+      setIsSearching(false)
+    }, 300)
   }
 
-  const filtered = mockData.filter(
-    (item) =>
-      item.title.toLowerCase().includes(value.toLowerCase()) ||
-      item.type.toLowerCase().includes(value.toLowerCase()),
-  )
+  const handleInputChange = (value: string) => {
+    setInputValue(value)
 
-  setSuggestions(filtered.slice(0, 5)) // top 5
-}
+    if (!value.trim()) {
+      setSearchResults([])
+      setSearchQuery("")
+      setSuggestions([])
+      setInputValue("")
+      setSearchTime(null)
+      return
+    }
 
-const handleQuickSearch = (query: string) => {
-  setInputValue(query)
-  runSearch(query)
-}
+    const filtered = mockData.filter(
+      (item) =>
+        item.title.toLowerCase().includes(value.toLowerCase()) ||
+        item.type.toLowerCase().includes(value.toLowerCase()),
+    )
 
+    setSuggestions(filtered.slice(0, 5)) // top 5
+  }
+
+  const handleQuickSearch = (query: string) => {
+    setInputValue(query)
+    runSearch(query)
+  }
 
   const getIcon = (type: string) => {
     switch (type) {
@@ -463,6 +537,191 @@ const handleQuickSearch = (query: string) => {
         return null
     }
   }
+
+  // 🔹 Simple Levenshtein Distance (Auto-correct helper)
+  const getClosestMatch = (query: string, options: string[]) => {
+    const distance = (a: string, b: string) => {
+      const dp = Array.from({ length: a.length + 1 }, () =>
+        Array(b.length + 1).fill(0),
+      )
+
+      for (let i = 0; i <= a.length; i++) dp[i][0] = i
+      for (let j = 0; j <= b.length; j++) dp[0][j] = j
+
+      for (let i = 1; i <= a.length; i++) {
+        for (let j = 1; j <= b.length; j++) {
+          dp[i][j] = Math.min(
+            dp[i - 1][j] + 1,
+            dp[i][j - 1] + 1,
+            dp[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1),
+          )
+        }
+      }
+
+      return dp[a.length][b.length]
+    }
+
+    let bestMatch = ""
+    let minDistance = Infinity
+
+    options.forEach((opt) => {
+      const d = distance(query.toLowerCase(), opt.toLowerCase())
+      if (d < minDistance) {
+        minDistance = d
+        bestMatch = opt
+      }
+    })
+
+    return minDistance <= 4 ? bestMatch : null // tolerance
+  }
+
+  const NoResults = ({ query }: { query: string }) => {
+    const suggestion = getClosestMatch(query, validSearchTerms)
+    return (
+      <div className="relative z-10 min-h-screen">
+        {/* Search Results Header */}
+        <div
+          className={`sticky top-0 z-40 backdrop-blur-lg transition-all duration-300 ${theme === "dark" ? "bg-[#0f1729]/80" : "bg-white/80"} border-b ${theme === "dark" ? "border-slate-800" : "border-slate-200"}`}
+        >
+          <div className="max-w-6xl mx-auto px-4 py-4">
+            <div className="flex items-center gap-4">
+              {/* Logo */}
+              <h1
+                className={`text-3xl font-bold tracking-tight cursor-pointer transition-transform hover:scale-105 ${theme === "dark" ? "text-white" : "text-slate-900"}`}
+                onClick={() => {
+                  setSearchResults([])
+                  setSearchQuery("")
+                  setSuggestions([])
+                  setInputValue("")
+                  setSearchTime(null)
+                }}
+              >
+                <span className="text-[#4285f4]">S</span>
+                <span className="text-[#ea4335]">u</span>
+                <span className="text-[#fbbc04]">m</span>
+                <span className="text-[#34a853]">i</span>
+                <span className="text-[#4285f4]">t</span> {" "}
+                <span className="text-[#4285f4]">S</span>
+                <span className="text-[#ea4335]">i</span>
+                <span className="text-[#fbbc04]">n</span>
+                <span className="text-[#34a853]">g</span>
+                <span className="text-[#4285f4]">h</span>
+              </h1>
+
+              {/* Search Bar */}
+              <div className="flex-1 max-w-2xl">
+                <div
+                  className={`relative flex items-center gap-3 px-4 py-2 rounded-full transition-all duration-300 ${theme === "dark" ? "bg-slate-800 hover:bg-slate-750" : "bg-white hover:bg-slate-50"} border ${theme === "dark" ? "border-slate-700" : "border-slate-300"} shadow-sm`}
+                >
+                  <Search className={`w-4 h-4 ${theme === "dark" ? "text-slate-400" : "text-slate-500"}`} />
+                  <Input
+                    type="text"
+                    value={inputValue}
+                    placeholder="Search Sumit's profile..."
+                    onChange={(e) => handleInputChange(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        runSearch(inputValue)
+                      }
+                    }}
+                    style={{ boxShadow: 'none' }}
+                    className={`flex-1 bg-transparent border-none outline-none focus-visible:ring-0 focus-visible:ring-offset-0 ${theme === "dark" ? "text-white placeholder:text-slate-500" : "text-slate-900 placeholder:text-slate-400"}`}
+                  />
+                </div>
+              </div>
+
+              {/* Back Button */}
+              <Button
+                variant="ghost"
+                onClick={() => {
+                  setSearchResults([])
+                  setSearchQuery("")
+                  setInputValue("")
+                  setSearchTime(null)
+                  setSuggestions([])
+                }}
+                className={`transition-all duration-300 hover:scale-105 ${theme === "dark" ? "text-slate-300 hover:text-white hover:bg-slate-800" : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"}`}
+              >
+                Back to Home
+              </Button>
+
+              {/* Theme Toggle */}
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleTheme}
+                className={`rounded-full transition-all duration-300 hover:scale-110 hover:rotate-12 ${theme === "dark" ? "hover:bg-slate-800 text-white" : "hover:bg-slate-100 text-slate-900"}`}
+              >
+                {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Results */}
+        <div className="max-w-4xl mx-auto px-4 py-8">
+          {searchTime !== null && (
+            <p className={`text-sm mb-8 animate-fade-in ${theme === "dark" ? "text-slate-400" : "text-slate-600"}`}>
+              About {searchResults.length} results ({searchTime} seconds)
+            </p>
+          )}
+          <div className="flex flex-col items-center justify-center py-24 text-center animate-fade-in">
+            {/* Icon */}
+            <div className="mb-6">
+              <Search className="w-16 h-16 text-slate-400" />
+            </div>
+
+            {/* Main Text */}
+            <h2 className="text-lg md:text-xl font-medium text-slate-800 dark:text-slate-200 mb-2">
+              Your search – <span className="font-semibold">{query}</span> – did not match any portfolio items.
+            </h2>
+
+            {suggestion && (
+              <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
+                Did you mean{" "}
+                <button
+                  onClick={() => {
+                    setInputValue(suggestion)
+                    runSearch(suggestion)
+                  }}
+                  className="text-blue-600 dark:text-blue-400 font-medium hover:underline"
+                >
+                  {suggestion}
+                </button>
+                ?
+              </p>
+            )}
+
+            {/* Suggestions Box */}
+            <div className="mt-6 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl p-6 max-w-lg w-full">
+              <p className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-3">
+                Suggestions:
+              </p>
+              <ul className="text-sm text-slate-600 dark:text-slate-400 space-y-2 list-disc list-inside">
+                <li>Make sure all words are spelled correctly</li>
+                <li>Try different keywords</li>
+                <li>Try more general keywords</li>
+                <li>
+                  Try:{" "}
+                  {quickSearchLinks.map((link, index) => (
+                    <button
+                      key={link}
+                      onClick={() => handleQuickSearch(link)}
+                      className={`text-sm transition-all duration-300 hover:scale-110 hover:-translate-y-1 animate-fade-in ${theme === "dark" ? "text-blue-400 hover:text-blue-300" : "text-blue-600 hover:text-blue-700"}`}
+                      style={{ animationDelay: `${1.4 + index * 0.05}s`, marginRight: '10px' }}
+                    >
+                      {link}
+                    </button>
+                  ))}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
 
   return (
     <div className={`min-h-screen transition-all duration-500 ${theme === "dark" ? "dark bg-[#0f1729]" : "bg-white"}`}>
@@ -498,27 +757,44 @@ const handleQuickSearch = (query: string) => {
         </Button>
 
         {/* Main Content */}
-        {searchResults.length === 0 ? (
+        {/* ================= HOME ================= */}
+        {!searchQuery && (
           <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4">
             {/* Logo */}
             <div className="mb-8 animate-fade-in-up">
               <h1
                 className={`text-7xl md:text-8xl font-bold tracking-tight ${theme === "dark" ? "text-white" : "text-slate-900"}`}
               >
-                <span className="inline-block animate-bounce-subtle text-[#4285f4]" style={{ animationDelay: "0s" }}>
+                <span className="inline-block animate-bounce-subtle text-[#4285f4] transition-transform duration-300 ease-out hover:scale-125 cursor-pointer" style={{ animationDelay: "0s" }}>
                   S
                 </span>
-                <span className="inline-block animate-bounce-subtle text-[#ea4335]" style={{ animationDelay: "0.1s" }}>
+                <span className="inline-block animate-bounce-subtle text-[#ea4335] transition-transform duration-300 ease-out hover:scale-125 cursor-pointer" style={{ animationDelay: "0.1s" }}>
                   u
                 </span>
-                <span className="inline-block animate-bounce-subtle text-[#fbbc04]" style={{ animationDelay: "0.2s" }}>
+                <span className="inline-block animate-bounce-subtle text-[#fbbc04] transition-transform duration-300 ease-out hover:scale-125 cursor-pointer" style={{ animationDelay: "0.2s" }}>
                   m
                 </span>
-                <span className="inline-block animate-bounce-subtle text-[#34a853]" style={{ animationDelay: "0.3s" }}>
+                <span className="inline-block animate-bounce-subtle text-[#34a853] transition-transform duration-300 ease-out hover:scale-125 cursor-pointer" style={{ animationDelay: "0.3s" }}>
                   i
                 </span>
-                <span className="inline-block animate-bounce-subtle text-[#4285f4]" style={{ animationDelay: "0.4s" }}>
+                <span className="inline-block animate-bounce-subtle text-[#4285f4] transition-transform duration-300 ease-out hover:scale-125 cursor-pointer" style={{ animationDelay: "0.4s" }}>
                   t
+                </span>
+                {" "}
+                <span className="inline-block animate-bounce-subtle text-[#4285f4] transition-transform duration-300 ease-out hover:scale-125 cursor-pointer" style={{ animationDelay: "0s" }}>
+                  S
+                </span>
+                <span className="inline-block animate-bounce-subtle text-[#ea4335] transition-transform duration-300 ease-out hover:scale-125 cursor-pointer" style={{ animationDelay: "0.1s" }}>
+                  i
+                </span>
+                <span className="inline-block animate-bounce-subtle text-[#fbbc04] transition-transform duration-300 ease-out hover:scale-125 cursor-pointer" style={{ animationDelay: "0.2s" }}>
+                  n
+                </span>
+                <span className="inline-block animate-bounce-subtle text-[#34a853] transition-transform duration-300 ease-out hover:scale-125 cursor-pointer" style={{ animationDelay: "0.3s" }}>
+                  g
+                </span>
+                <span className="inline-block animate-bounce-subtle text-[#4285f4] transition-transform duration-300 ease-out hover:scale-125 cursor-pointer" style={{ animationDelay: "0.4s" }}>
+                  h
                 </span>
               </h1>
             </div>
@@ -546,7 +822,7 @@ const handleQuickSearch = (query: string) => {
                 <div
                   className={`relative flex items-center gap-3 px-6 py-4 rounded-full transition-all duration-300 ${theme === "dark" ? "bg-slate-800/90 hover:bg-slate-800" : "bg-white hover:bg-slate-50"} border ${theme === "dark" ? "border-slate-700" : "border-slate-200"}`}
                 >
-                  <Search className={`w-5 h-5 ${theme === "dark" ? "text-slate-400" : "text-slate-500"}`} onClick={() => runSearch(inputValue)}/>
+                  <Search className={`w-5 h-5 ${theme === "dark" ? "text-slate-400" : "text-slate-500"}`} onClick={() => runSearch(inputValue)} />
                   <Input
                     value={inputValue}
                     placeholder="Search Sumit's profile..."
@@ -556,36 +832,34 @@ const handleQuickSearch = (query: string) => {
                         runSearch(inputValue)
                       }
                     }}
-                    style={{boxShadow:'none'}}
+                    style={{ boxShadow: 'none' }}
                     type="text"
                     className={`flex-1 bg-transparent border-none box-shadow-none outline-none focus-visible:ring-0 focus-visible:ring-offset-0 ${theme === "dark" ? "text-white placeholder:text-slate-500" : "text-slate-900 placeholder:text-slate-400"}`}
                   />
                 </div>
-                  {suggestions.length > 0 && (
-                    <div
-                          className={`absolute top-full mt-2 w-full rounded-xl overflow-hidden z-90 ${
-                            theme === "dark" ? "bg-slate-800 border border-slate-700" : "bg-white border border-slate-200"
+                {suggestions.length > 0 && (
+                  <div
+                    className={`absolute top-full mt-2 w-full rounded-xl overflow-hidden z-90 ${theme === "dark" ? "bg-slate-800 border border-slate-700" : "bg-white border border-slate-200"
+                      }`}
+                  >
+                    {suggestions.map((item) => (
+                      <div
+                        key={item.id}
+                        onClick={() => {
+                          setInputValue(item.title)
+                          runSearch(item.type)
+                        }}
+                        className={`px-4 py-3 cursor-pointer transition ${theme === "dark"
+                          ? "hover:bg-slate-700 text-slate-200"
+                          : "hover:bg-slate-100 text-slate-800"
                           }`}
-                        >
-                          {suggestions.map((item) => (
-                            <div
-                              key={item.id}
-                              onClick={() => {
-                                setInputValue(item.title)
-                                runSearch(item.type)
-                              }}
-                              className={`px-4 py-3 cursor-pointer transition ${
-                                theme === "dark"
-                                  ? "hover:bg-slate-700 text-slate-200"
-                                  : "hover:bg-slate-100 text-slate-800"
-                              }`}
-                            >
-                              <span className="text-sm font-medium">{item.title}</span>
-                              <span className="ml-2 text-xs opacity-60">({item.type})</span>
-                            </div>
-                          ))}
-                        </div>
-                  )}
+                      >
+                        <span className="text-sm font-medium">{item.title}</span>
+                        <span className="ml-2 text-xs opacity-60">({item.type})</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
 
@@ -626,7 +900,10 @@ const handleQuickSearch = (query: string) => {
               </div>
             </div>
           </div>
-        ) : (
+        )}
+
+        {/* ================= RESULTS FOUND ================= */}
+        {searchQuery && searchResults.length > 0 && (
           <div className="relative z-10 min-h-screen">
             {/* Search Results Header */}
             <div
@@ -637,7 +914,7 @@ const handleQuickSearch = (query: string) => {
                   {/* Logo */}
                   <h1
                     className={`text-3xl font-bold tracking-tight cursor-pointer transition-transform hover:scale-105 ${theme === "dark" ? "text-white" : "text-slate-900"}`}
-                     onClick={() => {
+                    onClick={() => {
                       setSearchResults([])
                       setSearchQuery("")
                       setSuggestions([])
@@ -649,7 +926,12 @@ const handleQuickSearch = (query: string) => {
                     <span className="text-[#ea4335]">u</span>
                     <span className="text-[#fbbc04]">m</span>
                     <span className="text-[#34a853]">i</span>
-                    <span className="text-[#4285f4]">t</span>
+                    <span className="text-[#4285f4]">t</span> {" "}
+                    <span className="text-[#4285f4]">S</span>
+                    <span className="text-[#ea4335]">i</span>
+                    <span className="text-[#fbbc04]">n</span>
+                    <span className="text-[#34a853]">g</span>
+                    <span className="text-[#4285f4]">h</span>
                   </h1>
 
                   {/* Search Bar */}
@@ -668,7 +950,7 @@ const handleQuickSearch = (query: string) => {
                             runSearch(inputValue)
                           }
                         }}
-                        style={{boxShadow:'none'}}
+                        style={{ boxShadow: 'none' }}
                         className={`flex-1 bg-transparent border-none outline-none focus-visible:ring-0 focus-visible:ring-offset-0 ${theme === "dark" ? "text-white placeholder:text-slate-500" : "text-slate-900 placeholder:text-slate-400"}`}
                       />
                     </div>
@@ -769,7 +1051,7 @@ const handleQuickSearch = (query: string) => {
                       >
                         {result?.urlText}
                       </a>
-                     )}
+                    )}
 
                     {/* Description */}
                     <p
@@ -820,6 +1102,39 @@ const handleQuickSearch = (query: string) => {
                       </div>
                     )}
 
+                    {/* Social Media Links */}
+                    {result.socialLinks && result.socialLinks.length > 0 && (
+                      <div className="mt-4">
+                        
+
+                        <div className="flex flex-wrap gap-3 items-center mb-5">
+                          <p
+                          className={`text-sm font-medium mb-0 ${
+                            theme === "dark" ? "text-slate-200" : "text-slate-800"
+                          }`}
+                        >
+                          Social Profiles:
+                        </p>
+                          {result.socialLinks.map((social, idx) => (
+                            <a
+                              key={idx}
+                              href={social.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={`px-4 py-1 rounded-full text-sm transition-all duration-300 hover:scale-105 ${
+                                theme === "dark"
+                                  ? "bg-slate-800 text-blue-400 hover:bg-slate-700"
+                                  : "bg-slate-100 text-blue-600 hover:bg-slate-200"
+                              }`}
+                              style={{border:'1px solid #ddd'}}
+                            >
+                              {social.name}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
                     {/* Tags */}
                     {result.tags && result.tags.length > 0 && (
                       <div className="flex flex-wrap gap-2">
@@ -840,6 +1155,11 @@ const handleQuickSearch = (query: string) => {
               </div>
             </div>
           </div>
+        )}
+
+        {/* ================= NO RESULTS ================= */}
+        {searchQuery && searchResults.length === 0 && !isSearching && (
+          <NoResults query={searchQuery} />
         )}
       </div>
     </div>
