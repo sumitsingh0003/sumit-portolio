@@ -1,17 +1,19 @@
 "use client"
 
 import { useState } from "react"
-import { Search, Moon, Sun, MapPin, Calendar, GraduationCap, Briefcase, User } from "lucide-react"
+import { Search, Moon, Sun, MapPin, Calendar, GraduationCap, Briefcase, User, LucideUser, LucideCodeXml, LucidePhone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 
 type SearchResult = {
   id: string
-  type: "about" | "education" | "experience"
-  title: string
-  subtitle?: string
+  type: "about" | "education" | "experience" | "projects" | "skills" | "contact",
+  title: string,
+  subtitle?: string,
   description: string
+  urlLink?: string,
+  urlText?: string,
   meta?: {
     date?: string
     location?: string
@@ -21,111 +23,360 @@ type SearchResult = {
   tags?: string[]
 }
 
+
 const mockData: SearchResult[] = [
   {
     id: "1",
     type: "about",
     title: "About Sumit Singh - Senior Software Engineer",
-    description:
-      "Accomplished senior software engineer equipped with 5+ years of success architecting and scaling secure, real-time applications across front-end, back-end, and cloud environments. Experience partnering with product managers and UI/UX designers to translate product requirements into production-ready code, leveraging expertise in distributed systems, API design, CI/CD pipelines, and performance optimization to deliver low-latency, fault-tolerant platforms serving hundreds of thousands of users.",
+    description: "Results-driven Senior Software Engineer with 3+ years of hands-on exp in designing, developing, and optimizing modern web applications. Strong expertise across frontend development, real-time systems, and performance-focused UI engineering, with a proven ability to convert complex business requirements into scalable, user-friendly solutions. Exp in working closely with product managers, UI/UX designers, and cross-functional teams to deliver production-ready applications. Skilled in building responsive dashboards, real-time video communication features, and high-performance web platforms with a focus on code quality, scalability, and user exp.",
     achievements: [
-      "5+ years of software engineering experience",
-      "Expertise in distributed systems and API design",
-      "Experience with platforms serving hundreds of thousands of users",
-      "Specialization in real-time, fault-tolerant applications",
+      "3+ years of professional software engineering exp",
+      "Strong expertise in React.js, JavaScript, and modern frontend frameworks",
+      "Hands-on exp with real-time applications and video communication systems",
+      "Proven ability to optimize performance, fix complex bugs, and enhance product stability",
+      "Exp collaborating with stakeholders to deliver scalable, production-ready solutions",
     ],
     tags: [
       "#Senior Software Engineer",
       "#Full Stack",
-      "#Real-time Applications",
-      "#Distributed Systems",
+      "#ReactJS",
+      "#Real Time Applications",
+      "#Performance Optimization",
       "#API Design",
-      "#CI/CD",
+      "#Web Development",
     ],
   },
   {
     id: "2",
     type: "education",
-    title: "Master of Computer Information Systems",
-    subtitle: "Colorado State University",
+    title: "Bachelor of Computer Applications (BCA)",
+    subtitle: "Swami Vivekanand Subharti University",
     description:
-      "Pursued an advanced degree in Computer Information Systems at Colorado State University, Fort Collins, focusing on business intelligence, IT project management, and application development. Developed strong analytical, technical, and project management skills through coursework and projects.",
+      "Completed a comprehensive undergraduate degree in Computer Applications from Swami Vivekanand Subharti University, focusing on core computer science fundamentals, programming, and application development. Gained hands-on exposure to software development concepts, database management, and web technologies through academic coursework and practical assignments.",
     meta: {
-      date: "May 2025",
-      location: "Fort Collins, Colorado, United States",
+      date: "May 2024",
+      location: "Subhartipuram, NH-58, Delhi–Haridwar Bypass Road, Meerut – 250005",
     },
     achievements: [
-      "CGPA: 3.73/4",
-      "Completed graduate certifications in Business Intelligence, IT Project Management, and Business Application Development",
-      "Led multiple hands-on projects integrating database management, analytics, and software development",
+      "Built strong foundations in programming, data structures, and software engineering principles",
+      "Worked on academic project's involving web development and database-driven applications",
+      "Developed practical understanding of computer applications, system design, and problem-solving",
+      "Gained exposure to modern development tools and technologies through coursework",
     ],
-    tags: ["#Masters", "#MCIS", "#Colorado State University", "#Computer Information Systems"],
+    tags: ["#BCA", "#BachelorOfComputerApplications", "#ComputerScience", "#SwamiVivekanandSubhartiUniversity"],
   },
   {
     id: "3",
     type: "education",
-    title: "Bachelor of Engineering in Computer Science",
-    subtitle: "Anna University",
+    title: "Senior Secondary Education (12th Grade)",
+    subtitle: "Haryana Board of School Education (HBSE)",
     description:
-      "Completed undergraduate studies in Computer Science & Engineering at Anna University, Chennai. Gained a strong foundation in programming, algorithms, and software engineering principles, preparing for a career in full-stack and cloud application development.",
+      "Completed senior secondary education under the Haryana Board of School Education with a focus on analytical thinking, problem-solving, and foundational academic disciplines. Developed discipline, time management, and academic consistency through structured learning and evaluations.",
     meta: {
-      date: "Apr 2021",
-      location: "Chennai, Tamil Nadu, India",
+      date: "Apr 2020",
+      location: "Govt. Sr. Sec. School, Saran, Faridabad, Haryana – 121004",
     },
     achievements: [
-      "CGPA: 8.53/10",
-      "Specialized in computer science and engineering fundamentals",
-      "Completed major projects in software development and data structures",
+      "Developed strong fundamentals in mathematics and logical reasoning",
+      "Built academic discipline and consistency through board-level examinations",
+      "Strengthened communication and problem-solving skills",
     ],
-    tags: ["#Bachelors", "#Computer Science", "#Engineering", "#Anna University"],
+    tags: ["#12thGrade", "#HBSE", "#SeniorSecondary", "#HaryanaBoard"],
   },
   {
     id: "4",
     type: "experience",
     title: "Senior Software Engineer at SaleAssist.ai",
-    subtitle: "SaleAssist.ai",
     description:
-      "Engineered and enhanced products and dashboards using React, HTML, JavaScript, CSS, SCSS, Material-UI, Handlebars, and Webpack. Built and optimized a video calling system using Agora web SDK, resulting in a 90% improvement in video calling experience.",
+      "Engineered and enhanced products and internal dashboards using React.js, HTML, JavaScript, CSS, SCSS, Material-UI, Handlebars, and Webpack, improving overall UI responsiveness and user interaction. Built and optimized a real-time video calling system using Agora Web SDK, significantly improving call stability, latency, and video quality for one-to-one, one-to-many, and live streaming use cases.",
     meta: {
       date: "Apr 2022 - Aug 2025",
-      location: "Remote",
+      location: "India",
       company: "SaleAssist.ai",
     },
     achievements: [
-      "90% improvement in video calling experience",
-      "60% faster connections",
-      "Resolved 50+ complex bugs",
-      "Enhanced system performance and reliability",
-      "Managed 3K+ clients, 6K+ agents, 160K+ meetings",
+      "Improved video calling exp by approximately 60–70% through Agora Web SDK optimizations",
+      "Achieved faster and more stable video connections across one-to-one, one-to-many, and live sessions",
+      "Resolved 50+ complex production bugs, reducing recurring issues and improving system reliability",
+      "Enhanced overall frontend performance and UI responsiveness by 25–30%",
+      "Supported a large-scale platform handling 3K+ clients, 6K+ agents, and 160K+ meetings"
     ],
-    tags: ["#React", "#JavaScript", "#CSS", "#SCSS", "#Material-UI", "#Agora SDK", "+2 more"],
+    tags: [
+      "#React",
+      "#JavaScript",
+      "#CSS",
+      "#SCSS",
+      "#Material-UI",
+      "#Webpack",
+      "#AgoraSDK",
+      "#RealTimeApplications"
+    ]
   },
-  {
+ {
     id: "5",
     type: "experience",
-    title: "UI Developer at KidBit",
-    subtitle: "KidBit",
+    title: "Senior Web Developer at AbacusDesk IT Solution Pvt. Ltd.",
     description:
-      "Developed and maintained a responsive website using React and Material-UI, focusing on enhancing user experience and overall site performance metrics. Maintained 99.5% uptime and implemented automation solutions.",
+      "Designed and developed responsive, high-performance websites using HTML, CSS, JavaScript, jQuery, Tailwind CSS, Materialize, PHP, and custom WordPress development. Delivered client-focused solutions while ensuring performance, scalability, and cross-browser compatibility.",
     meta: {
-      date: "Aug 2021 - Mar 2022",
-      location: "Remote",
-      company: "KidBit",
+      date: "Sep 2020 - Nov 2022",
+      location: "India",
+      company: "AbacusDesk IT Solution Pvt. Ltd."
     },
     achievements: [
-      "99.5% uptime maintenance",
-      "Delivered full website under 3-day deadline",
-      "Automated workflows saving 10+ hours per week",
-      "Enhanced user experience and performance",
+      "Improved overall website load speed by 35–45% through performance optimization techniques",
+      "Managed end-to-end Website AMC, including updates, security monitoring, backups, and bug fixes",
+      "Reduced downtime incidents by 40% and improved website stability by 50%",
+      "Handled hosting, deployments, and server configurations on cPanel and Hostinger",
+      "Optimized websites for SEO best practices, improving performance scores by 25–35%"
     ],
-    tags: ["#React", "#Material-UI", "#UI Development", "#Python", "#Selenium", "#Web Scraping"],
+    tags: [
+      "#HTML",
+      "#CSS",
+      "#JavaScript",
+      "#jQuery",
+      "#TailwindCSS",
+      "#PHP",
+      "#WordPress",
+      "#cPanel",
+      "#SEO"
+    ]
   },
+  {
+    id: "6",
+    type: "contact",
+    title: "Contact Information",
+    urlText: "✉️ sumit18440@gmail.com",
+    urlLink:"mailto:sumit18440@gmail.com",
+    description:
+      "📞 Phone: +91 989-155-4993 | Location: Faridabad, Haryana, India | I’d love to hear from you! Get in touch with me for opportunities, collaborations, or inquiries.",
+    meta: {
+      location: "Faridabad, Haryana, India"
+    },
+    tags: [
+      "#Contact",
+      "#Email",
+      "#Phone",
+      "#Location"
+    ]
+  },
+  {
+    id: "7",
+    type: "contact",
+    title: "LinkedIn Profile",
+    urlText: "ℹ️ linkedin.com/in/sumitsingh0003",
+    urlLink:"https://www.linkedin.com/in/sumitsingh0003",
+    description: "Connect with me on LinkedIn to view professional background, project and achievements.",
+    meta: {
+      location: "Faridabad, Haryana, India"
+    },
+    tags: [ "#LinkedIn", "Profile", "#Networking" ]
+  },
+  {
+  id: "8",
+  type: "skills",
+  title: "Programming Languages",
+  description:
+    "Proficient in JavaScript, Python, HTML, CSS, SCSS, and PHP with strong exp in building responsive, scalable, and performance-optimized web applications.",
+  tags: [
+    "JavaScript",
+    "Python",
+    "HTML",
+    "CSS",
+    "SCSS",
+    "PHP",
+    "Programming"
+  ]
+  },
+  {
+    id: "9",
+    type: "skills",
+    title: "Web Technologies & Frameworks",
+    description:
+      "Exp in modern web development using React.js, Node.js, Express.js, Next.js, Material-UI, Bootstrap, Redux, Redux Toolkit, jQuery, and REST API integrations.",
+    tags: [
+      "React.js",
+      "Next.js",
+      "Node.js",
+      "Express.js",
+      "Material-UI",
+      "Bootstrap",
+      "Redux",
+      "Redux Toolkit",
+      "jQuery",
+      "REST APIs"
+    ]
+  },
+  {
+    id: "10",
+    title: "Tools & Technologies",
+    type: "skills",
+    description:
+      "Hands-on exp with Git, GitHub, cPanel, Hostinger, Android Studio, and Firebase for development, deployment, version control, and application management.",
+    tags: [
+      "Git",
+      "GitHub",
+      "cPanel",
+      "Hostinger",
+      "Android Studio",
+      "Firebase",
+      "Tools"
+    ]
+  },
+  {
+    id: "11",
+    type: "skills",
+    title: "Databases",
+    description:
+      "Skilled in working with both relational and NoSQL databases including MongoDB, PostgreSQL, and MySQL to design and manage efficient data-driven applications.",
+    tags: [
+      "MongoDB",
+      "PostgreSQL",
+      "MySQL",
+      "Databases",
+      "SQL"
+    ]
+  },
+  {
+    id: "12",
+    type: "skills",
+    title: "CMS & Page Builders",
+    description:
+      "Extensive exp with WordPress development and page builders such as Elementor, WPBakery, Divi, and Visual Composer for creating custom, client-focused websites.",
+    tags: [
+      "WordPress",
+      "Elementor",
+      "WPBakery",
+      "Divi",
+      "Visual Composer",
+      "CMS"
+    ]
+  },
+  {
+    id: "13",
+    type: "projects",
+    title: "Manages Project Tasks App",
+    urlText: "🔗 pro-manages.netlify.app",
+    urlLink: "https://pro-manages.netlify.app/",
+    description:
+      "A full-stack project task management web application designed to help users organize, track, and manage tasks efficiently. The application supports secure authentication, task workflows, priorities, due-date alerts, analytics, and user account management with a clean and intuitive UI.",
+    meta: {
+      date: "May 2024",
+      location: "India"
+    },
+    achievements: [
+      "Implemented secure user authentication with JWT, single-device sessions, and automatic logout after 24 hours",
+      "Built a complete task management system with priorities, due dates, status updates, and workflow columns (Backlog, To-Do, In-Progress, Done)",
+      "Added checklist and sub-task support for better task breakdown and tracking",
+      "Developed due-date alerts and visual highlights based on task priority and deadlines",
+      "Created an analytics dashboard showing insights for completed, pending, and in-progress tasks",
+      "Implemented full frontend and backend validation for forms and token handling",
+      "Designed and developed the project as a solo application, handling frontend, backend, UI/UX, and database"
+    ],
+    tags: [
+      "#TaskManagement",
+      "#FullStackProject",
+      "#JWTAuthentication",
+      "#WebApplication",
+      "#ProjectManagement",
+      "#SoloProject"
+    ]
+  },
+  {
+  id: "14",
+  type: "projects",
+  title: "Invoice Maker",
+  urlText: "🔗 invoice-maker.app",
+  urlLink: "https://make-invoice.netlify.app",
+  description:
+    "A full-stack invoice management web application that allows users to create, manage, and export professional invoices. The app supports secure authentication, dynamic invoice creation, automatic calculations, multiple templates, and PDF export functionality.",
+  meta: {
+    date: "Jun 2024",
+    location: "Remote"
+  },
+  achievements: [
+    "Implemented secure user authentication with JWT verification and single-device session control",
+    "Built a dynamic invoice builder supporting items, quantities, rates, taxes, discounts, and service charges",
+    "Enabled automatic calculations for subtotal, GST, tax, discounts, and balance due",
+    "Developed CRUD functionality for invoices including create, edit, update, delete, and preview",
+    "Integrated PDF export to convert full HTML invoices into downloadable PDF files",
+    "Added multiple invoice templates and client management features",
+    "Designed and developed the project as a solo application covering frontend, backend, UI/UX, PDF engine, and database"
+  ],
+  tags: [
+    "#InvoiceMaker",
+    "#FullStackProject",
+    "#JWTAuthentication",
+    "#PDFGeneration",
+    "#WebApplication",
+    "#SoloProject"
+  ]
+  },
+  {
+  id: "15",
+  type: "projects",
+  title: "API CRUD Generator",
+  urlText: "🔗 api-crud-generator.app",
+  urlLink: "https://apigenerator.netlify.app",
+  description:
+    "A dynamic API generation platform that allows users to instantly create and test ready-to-use CRUD APIs. The system automatically generates endpoints and database structures based on user-defined prefixes and database names.",
+  meta: {
+    date: "Jul 2024",
+    location: "Remote"
+  },
+  achievements: [
+    "Implemented login-based access using predefined credentials for secure usage without registration",
+    "Built a dynamic API generator that creates five ready-to-use CRUD APIs using prefix and database name inputs",
+    "Enabled full CRUD operations including create, read all, read by ID, update, and delete endpoints",
+    "Designed dynamic MySQL database creation with separate storage per prefix and database name",
+    "Allowed unlimited API usage with no rate limits, optimized for student practice and learning",
+    "Developed a responsive frontend dashboard using React.js and Bootstrap for testing APIs directly from the UI",
+    "Built the project end-to-end as a solo developer handling frontend, backend, API architecture, and database design"
+  ],
+  tags: [
+    "#APIGenerator",
+    "#CRUD",
+    "#BackendDevelopment",
+    "#MySQL",
+    "#ReactJS",
+    "#SoloProject"
+  ]
+},
+{
+  id: "16",
+  type: "about",
+  title: "Resume Download",
+  urlText: "📄 Download Resume",
+  urlLink: "/Sumit_Singh-Resume.pdf",
+  description:
+    "A dedicated resume download section that allows recruiters and hiring managers to quickly access and download my latest professional resume. The resume highlights my experience, skills, projects, and achievements in a clean and structured format.",
+  meta: {
+    date: "Updated 2026",
+    location: "India"
+  },
+  achievements: [
+    "Designed a clean and professional resume layout optimized for ATS and recruiter screening",
+    "Highlighted 3+ years of experience in frontend, full-stack, and real-time application development",
+    "Included detailed experience, projects, technical skills, and education sections",
+    "Ensured easy one-click access for downloading the resume directly from the portfolio",
+    "Kept the resume regularly updated to reflect latest roles, projects, and skill enhancements"
+  ],
+  tags: [
+    "#Resume",
+    "#DownloadResume",
+    "#ATSFriendly",
+    "#CareerProfile",
+    "#Portfolio"
+  ]
+}
+
 ]
 
-const quickSearchLinks = ["about", "projects", "experience", "skills", "education", "publications", "contact"]
+const quickSearchLinks = ["about", "projects", "experience", "skills", "education", "contact"]
 
 const tagButtons = [
-  "5+ Years Experience",
+  "3+ Years Experience",
   "Full Stack Developer",
   "React Expert",
   "Problem Solver",
@@ -138,44 +389,76 @@ export default function PortfolioSearch() {
   const [searchQuery, setSearchQuery] = useState("")
   const [searchResults, setSearchResults] = useState<SearchResult[]>([])
   const [isSearching, setIsSearching] = useState(false)
+  const [inputValue, setInputValue] = useState("")
+  const [suggestions, setSuggestions] = useState<SearchResult[]>([])
+  const [searchTime, setSearchTime] = useState<number | null>(null)
+
+
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"))
   }
 
-  const handleSearch = (query: string) => {
-    setSearchQuery(query)
-    if (query.trim()) {
-      setIsSearching(true)
-      // Simulate search delay for animation
-      setTimeout(() => {
-        const results = mockData.filter(
-          (item) =>
-            item.title.toLowerCase().includes(query.toLowerCase()) ||
-            item.description.toLowerCase().includes(query.toLowerCase()) ||
-            item.type.toLowerCase().includes(query.toLowerCase()),
-        )
-        setSearchResults(results)
-        setIsSearching(false)
-      }, 300)
-    } else {
-      setSearchResults([])
-      setIsSearching(false)
-    }
+
+
+const runSearch = (query: string) => {
+  if (!query.trim()) return
+
+  setIsSearching(true)
+  setSearchQuery(query)
+
+  setTimeout(() => {
+    const results = mockData.filter(
+      (item) =>
+        item.title.toLowerCase().includes(query.toLowerCase()) ||
+        item?.description.toLowerCase().includes(query.toLowerCase()) ||
+        item.type.toLowerCase().includes(query.toLowerCase()),
+    )
+
+    setSearchResults(results)
+    setSearchTime(Number((Math.random() * 0.5 + 0.1).toFixed(2))) // 👈 HERE
+    setIsSearching(false)
+  }, 300)
+}
+
+
+const handleInputChange = (value: string) => {
+  setInputValue(value)
+
+  if (!value.trim()) {
+    setSuggestions([])
+    return
   }
 
-  const handleQuickSearch = (query: string) => {
-    handleSearch(query)
-  }
+  const filtered = mockData.filter(
+    (item) =>
+      item.title.toLowerCase().includes(value.toLowerCase()) ||
+      item.type.toLowerCase().includes(value.toLowerCase()),
+  )
+
+  setSuggestions(filtered.slice(0, 5)) // top 5
+}
+
+const handleQuickSearch = (query: string) => {
+  setInputValue(query)
+  runSearch(query)
+}
+
 
   const getIcon = (type: string) => {
     switch (type) {
       case "about":
         return <User className="w-4 h-4" />
-      case "education":
-        return <GraduationCap className="w-4 h-4" />
+      case "projects":
+        return <LucideCodeXml className="w-4 h-4" />
       case "experience":
         return <Briefcase className="w-4 h-4" />
+      case "skills":
+        return <LucideUser className="w-4 h-4" />
+      case "education":
+        return <GraduationCap className="w-4 h-4" />
+      case "contact":
+        return <LucidePhone className="w-4 h-4" />
       default:
         return null
     }
@@ -263,22 +546,53 @@ export default function PortfolioSearch() {
                 <div
                   className={`relative flex items-center gap-3 px-6 py-4 rounded-full transition-all duration-300 ${theme === "dark" ? "bg-slate-800/90 hover:bg-slate-800" : "bg-white hover:bg-slate-50"} border ${theme === "dark" ? "border-slate-700" : "border-slate-200"}`}
                 >
-                  <Search className={`w-5 h-5 ${theme === "dark" ? "text-slate-400" : "text-slate-500"}`} />
+                  <Search className={`w-5 h-5 ${theme === "dark" ? "text-slate-400" : "text-slate-500"}`} onClick={() => runSearch(inputValue)}/>
                   <Input
-                    type="text"
+                    value={inputValue}
                     placeholder="Search Sumit's profile..."
-                    value={searchQuery}
-                    onChange={(e) => handleSearch(e.target.value)}
-                    className={`flex-1 bg-transparent border-none outline-none focus-visible:ring-0 focus-visible:ring-offset-0 ${theme === "dark" ? "text-white placeholder:text-slate-500" : "text-slate-900 placeholder:text-slate-400"}`}
+                    onChange={(e) => handleInputChange(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        runSearch(inputValue)
+                      }
+                    }}
+                    style={{boxShadow:'none'}}
+                    type="text"
+                    className={`flex-1 bg-transparent border-none box-shadow-none outline-none focus-visible:ring-0 focus-visible:ring-offset-0 ${theme === "dark" ? "text-white placeholder:text-slate-500" : "text-slate-900 placeholder:text-slate-400"}`}
                   />
                 </div>
+                  {suggestions.length > 0 && (
+                    <div
+                          className={`absolute top-full mt-2 w-full rounded-xl overflow-hidden z-90 ${
+                            theme === "dark" ? "bg-slate-800 border border-slate-700" : "bg-white border border-slate-200"
+                          }`}
+                        >
+                          {suggestions.map((item) => (
+                            <div
+                              key={item.id}
+                              onClick={() => {
+                                setInputValue(item.title)
+                                runSearch(item.type)
+                              }}
+                              className={`px-4 py-3 cursor-pointer transition ${
+                                theme === "dark"
+                                  ? "hover:bg-slate-700 text-slate-200"
+                                  : "hover:bg-slate-100 text-slate-800"
+                              }`}
+                            >
+                              <span className="text-sm font-medium">{item.title}</span>
+                              <span className="ml-2 text-xs opacity-60">({item.type})</span>
+                            </div>
+                          ))}
+                        </div>
+                  )}
               </div>
             </div>
 
             {/* Tag Buttons */}
             <div
               className="flex flex-wrap justify-center gap-3 mb-8 max-w-3xl animate-fade-in-up"
-              style={{ animationDelay: "0.6s" }}
+              style={{ animationDelay: "0.6s", zIndex: -1 }}
             >
               {tagButtons.map((tag, index) => (
                 <Badge
@@ -295,7 +609,7 @@ export default function PortfolioSearch() {
             {/* Quick Searches */}
             <div
               className={`text-center animate-fade-in-up ${theme === "dark" ? "text-slate-400" : "text-slate-600"}`}
-              style={{ animationDelay: "1.3s" }}
+              style={{ animationDelay: "1.3s", zIndex: -1 }}
             >
               <p className="mb-4 text-sm">Quick searches:</p>
               <div className="flex flex-wrap justify-center gap-4">
@@ -323,7 +637,13 @@ export default function PortfolioSearch() {
                   {/* Logo */}
                   <h1
                     className={`text-3xl font-bold tracking-tight cursor-pointer transition-transform hover:scale-105 ${theme === "dark" ? "text-white" : "text-slate-900"}`}
-                    onClick={() => setSearchResults([])}
+                     onClick={() => {
+                      setSearchResults([])
+                      setSearchQuery("")
+                      setSuggestions([])
+                      setInputValue("")
+                      setSearchTime(null)
+                    }}
                   >
                     <span className="text-[#4285f4]">S</span>
                     <span className="text-[#ea4335]">u</span>
@@ -340,8 +660,15 @@ export default function PortfolioSearch() {
                       <Search className={`w-4 h-4 ${theme === "dark" ? "text-slate-400" : "text-slate-500"}`} />
                       <Input
                         type="text"
-                        value={searchQuery}
-                        onChange={(e) => handleSearch(e.target.value)}
+                        value={inputValue}
+                        placeholder="Search Sumit's profile..."
+                        onChange={(e) => handleInputChange(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            runSearch(inputValue)
+                          }
+                        }}
+                        style={{boxShadow:'none'}}
                         className={`flex-1 bg-transparent border-none outline-none focus-visible:ring-0 focus-visible:ring-offset-0 ${theme === "dark" ? "text-white placeholder:text-slate-500" : "text-slate-900 placeholder:text-slate-400"}`}
                       />
                     </div>
@@ -353,6 +680,9 @@ export default function PortfolioSearch() {
                     onClick={() => {
                       setSearchResults([])
                       setSearchQuery("")
+                      setInputValue("")
+                      setSearchTime(null)
+                      setSuggestions([])
                     }}
                     className={`transition-all duration-300 hover:scale-105 ${theme === "dark" ? "text-slate-300 hover:text-white hover:bg-slate-800" : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"}`}
                   >
@@ -374,9 +704,11 @@ export default function PortfolioSearch() {
 
             {/* Results */}
             <div className="max-w-4xl mx-auto px-4 py-8">
-              <p className={`text-sm mb-8 animate-fade-in ${theme === "dark" ? "text-slate-400" : "text-slate-600"}`}>
-                About {searchResults.length} results (0.{Math.floor(Math.random() * 50 + 10)} seconds)
-              </p>
+              {searchTime !== null && (
+                <p className={`text-sm mb-8 animate-fade-in ${theme === "dark" ? "text-slate-400" : "text-slate-600"}`}>
+                  About {searchResults.length} results ({searchTime} seconds)
+                </p>
+              )}
 
               <div className="space-y-8">
                 {searchResults.map((result, index) => (
@@ -429,6 +761,15 @@ export default function PortfolioSearch() {
                     >
                       {result.title}
                     </h3>
+
+                    {/* Url Text */}
+                    {result?.urlText && (
+                      <a href={result?.urlLink} target="_blank"
+                        className={`text-sm leading-relaxed mb-4 ${theme === "dark" ? "text-green-300" : "text-green-700"}`}
+                      >
+                        {result?.urlText}
+                      </a>
+                     )}
 
                     {/* Description */}
                     <p

@@ -10,23 +10,23 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Sumit - Portfolio Search",
   description: "Senior Software Engineer & Full Stack Developer - Building real-time, AI-powered solutions",
-  generator: "v0.app",
+  generator: "Sumit Portfolio Search",
   icons: {
     icon: [
       {
-        url: "/icon-light-32x32.png",
+        url: "/mainFav.png",
         media: "(prefers-color-scheme: light)",
       },
       {
-        url: "/icon-dark-32x32.png",
+        url: "/mainFav.png",
         media: "(prefers-color-scheme: dark)",
       },
       {
-        url: "/icon.svg",
+        url: "/mainFav.png",
         type: "image/svg+xml",
       },
     ],
-    apple: "/apple-icon.png",
+    apple: "/mainFav.png",
   },
 }
 
